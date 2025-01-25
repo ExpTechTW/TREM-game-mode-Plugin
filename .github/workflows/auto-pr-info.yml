@@ -17,12 +17,12 @@ jobs:
       - name: Get filename from info.json
         id: get-filename
         run: |
-          cd source-repo/eew-logger
+          cd source-repo
           BASE_NAME=$(jq -r '.name' info.json)
           FILENAME="${BASE_NAME}.json"
           echo "filename=$FILENAME" >> $GITHUB_OUTPUT
           echo "branch_name=update-file-$(date +%s)" >> $GITHUB_OUTPUT
-          cp info.json ../../target.json
+          cp info.json ../target.json
 
       - name: Checkout target repository
         uses: actions/checkout@v4
