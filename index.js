@@ -2,16 +2,12 @@ class Plugin {
   static instance = null;
 
   #ctx;
-  #config;
 
   constructor(ctx) {
     if (Plugin.instance) return Plugin.instance;
 
     this.#ctx = ctx;
-    this.name = "P_P-info";
-    this.#config = null;
-    this.config = {};
-    this.logger = null;
+    this.name = "game-mode";
 
     Plugin.instance = this;
   }
@@ -23,7 +19,7 @@ class Plugin {
   }
 
   onLoad() {
-    const { TREM, Logger, info, utils } = this.#ctx;
+    const { TREM } = this.#ctx;
     this.init();
     this.addClickEvent(TREM);
   }
@@ -32,7 +28,7 @@ class Plugin {
     const focusButton = document.querySelector("#focus");
     if (focusButton) {
       const button = document.createElement("div");
-      button.id = "websocket";
+      button.id = "gamemode";
       button.className = "nav-bar-location";
       button.title = "啟用 pip 功能";
       button.innerHTML = `
@@ -42,7 +38,7 @@ class Plugin {
   }
 
   addClickEvent(TREM) {
-    const button = document.querySelector("#websocket");
+    const button = document.querySelector("#gamemode");
     button.addEventListener("click", () => {
       if (TREM.constant.GAME_MODE) {
         TREM.constant.GAME_MODE = false;
